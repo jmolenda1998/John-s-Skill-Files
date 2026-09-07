@@ -1,0 +1,35 @@
+# The purpose of this skill file is to easily determine EXACTLY what the inputs should be for a Salesforce partnership agreement based on the way that finance has phased the revenue. If we get the inputs correctly
+it will perfectly output the phased revenue in Snowflake
+
+## Instructions
+
+1. The desired output needs to be:
+  a. Opportunity Season (format should be 2025-2026 (2026 NYL)
+  b. Sponsorship season revenue (this will be all property revenue + hospitality)
+  c. Brewkdown of the how much money goes to each preoprty (i.e., Brooklyn Nets: $100,000 ; New York Liberty: $92,875 ; Barclays Center: $104,375 ; Hospitality: $50,000)
+  d. Contract Start/End Dates
+  e. Revenue Recognition End Date (the last month in which this agreement has phased revenue. Please put in the format of 9/30/2026. The last day should always be 30 or 31 based on the month)
+  f. Special Revenue Recognition Types (if applicable).
+    1. The default is Standard
+    2. Possible options are: Contract Year 1 Length, Midyear Escalator, Contract Year 1 < 12 Months, New York Liberty First, Phase Liberty Revenue into 1 Month. These can all typically be inferred based on how the imported sheet provided has phased the revenue
+    3. Contract Year 1 End Date (This is when the contract year differs from what a standard contract year is. This will be defined immediately after this)
+
+2. Guidance
+Typically, a contract year follows the following format if an agreement has multiple properties associated with it. A Barclays season would fall within this from July to June, 
+Brooklyn Nets from that October to April, New York Liberty from the FOLLOWING May to July, and Long Island Nets from November. Hospitality is separate from this and be used at any time throughout the year.
+For clarity, if an agreement was standard and had all of these properties associated with it and the contract start date was 7/1/2026 then the 2026-2027 (2027 NYL) season would run from July 2026 to June 2027 for Barclays, October 2026 to April 2027 for Brooklyn Nets, May 2027 to September 2027 for Liberty, and November 2026 to April 2027 for Long Siland NEts
+
+Based on the file provided, you will be able to determine all of the above. It is however important to note that the file is human generated and is known to have mistakes within it, we just need the best way to determine
+what the inputs should be so DO NOT TAKE IHE FILE AS GOSPEL if you identify discrepencies within itself. You can also flag it if there is a discrepancy within the file. The sponsorship season revenue (which is 
+noted as property revenue + hospitality) is TYPICALLY found within this file under the format of a column name with Sponsorship 26-27. Then tickets 26-27, suites 26-27, ticket bank 26-27, misc. 26-27 will total up
+to what hospitality should be. You can tell when the revenue is being phased into and how many months it's being phased into later on in the field that denotes the months. Barclays will typically be divided by 12, 
+Brooklyn Nets divided by 6, and Liberty divided by 5 and placed into each month equally. 
+
+This is where you will start to see the unusual revenue recognition types. Sometimes a contract year will differ from what I outlined earlier. For instance contract year 1 which would fall into the 26-27 season COULD BE
+May 2026 to June 2027, or 14 months. If they had $100,000 in Sponsorship 26-27 and then from May 26 to June 27, you saw 100k/14 in each cell, it would almost assuredly indicate that. Midyear escalator is when the contract
+year runs on a differenct schedule than what was defined previously. If a contract started in august for Barclays and you see Sponsorship 26-27 starting in that cell, this would be an example of midyear escalator.
+Sometimes New York Liberty is actually the first property in the deal (or simultaneous with Barclays) and therefore 26-27 (2027 NYL) actually means 2026 NYL. If you sww Sponsorship 26-27 revenue being allocated 
+into 2026 for Liberty, this would be an example of this. Contract Year 1 < 12 months is when a deal (almost definitely with Barclays) runs less than 12 months. Highpoint is an exampe where contract year 1 did not end 
+in June. It's important that you provide this information if it is clear it is not in a standard format.
+
+
